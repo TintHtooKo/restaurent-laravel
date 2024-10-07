@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Restoran - Bootstrap Restaurant Template</title>
+    <title>Restoran</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -55,25 +55,20 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="{{route('userHome')}}" class="nav-item nav-link">Home</a>
-                        <a href="{{route('userAbout')}}" class="nav-item nav-link">About</a>
-                        <a href="{{route('userService')}}" class="nav-item nav-link">Service</a>
-                        <a href="{{route('userMenu')}}" class="nav-item nav-link">Menu</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="{{route('userTeam')}}" class="dropdown-item">Our Team</a>
-                                <a href="{{route('userTestimonial')}}" class="dropdown-item">Testimonial</a>
-                            </div>
-                        </div>
-                        <a href="{{route('userContact')}}" class="nav-item nav-link">Contact</a>
+                        <a href="{{route('userHome')}}" class="nav-item nav-link @if(Request::route()->getName() == 'userHome') active @endif">Home</a>
+                        <a href="{{route('userAbout')}}" class="nav-item nav-link @if(Request::route()->getName() == 'userAbout') active @endif">About</a>
+                        <a href="{{route('userService')}}" class="nav-item nav-link @if(Request::route()->getName() == 'userService') active @endif">Service</a>
+                        <a href="{{route('userMenu')}}" class="nav-item nav-link @if(Request::route()->getName() == 'userMenu') active @endif">Menu</a>
+                        <a href="{{route('userTeam')}}" class="nav-item nav-link @if(Request::route()->getName() == 'userTeam') active @endif">Our Team</a>
+                        <a href="{{route('userTestimonial')}}" class="nav-item nav-link @if(Request::route()->getName() == 'userTestimonial') active @endif">Testimonial</a>
+                        <a href="{{route('userContact')}}" class="nav-item nav-link @if(Request::route()->getName() == 'userContact') active @endif">Contact</a>
                         @if (Auth::user())
                             <form action="{{route('logout')}}" method="POST">
                                 @csrf
                                 <button type="submit" class="nav-item nav-link bg-transparent border-0">Logout</button>
                             </form>
                         @else
-                            <a href="{{route('login')}}" class="nav-item nav-link">Login</a>
+                            <a href="{{route('login')}}" class="nav-item nav-link  @if(Request::route()->getName() == 'login') active @endif">Login</a>
                         @endif
                     </div>
                     <a href="{{route('userBooking')}}" class="btn btn-primary py-2 px-4">Book A Table</a>
@@ -81,6 +76,8 @@
             </nav>
 
             @yield('content')
+            @include('sweetalert::alert')
+
         
 
         <!-- Footer Start -->
