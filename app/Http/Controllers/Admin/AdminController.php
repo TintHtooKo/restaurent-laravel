@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Menu;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -68,6 +69,15 @@ class AdminController extends Controller
         $admin->delete();
         Alert::success('Success', 'Admin deleted successfully');
         return back();
+    }
+
+    public function adminMenu(){
+        $menu = Menu::select('id','name','image','price','created_at')
+                    ->when(request('search'),function($query){
+                        $query->whereAny(['name','price'],'like','%'.request('search').'%');
+                    })
+                    ->orderBy('id','desc')->get();
+        return view('admin.menulist.menu',compact('menu'));
     }
 
     private function adminValidate($request){

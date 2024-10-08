@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function userHome(){
-        return view('user.home.home');
+        $menu = Menu::orderBy('id','desc')->get();
+        return view('user.home.home',compact('menu'));
     }
 
     public function userAbout(){
@@ -20,7 +22,8 @@ class UserController extends Controller
     }
 
     public function userMenu(){
-        return view('user.home.menu');
+        $menu = Menu::orderBy('id','desc')->get();
+        return view('user.home.menu',compact('menu'));
     }
 
     public function userTeam(){

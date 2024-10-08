@@ -68,6 +68,13 @@
             <hr class="sidebar-divider d-none d-md-block">
 
             <li class="nav-item active">
+                <a class="nav-link" href="{{route('adminMenu')}}">
+                    <i class="fa-solid fa-bowl-food"></i>
+                    <span>Menu List</span></a>
+            </li>
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item active">
                 <a class="nav-link" href="{{route('adContact')}}">
                     <i class="fa-solid fa-message"></i>
                     <span>Contact Message</span></a>
@@ -146,17 +153,6 @@
         @yield('content')
         @include('sweetalert::alert')
 
-
-            <!-- Footer -->
-            {{-- <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer> --}}
-            <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
 
@@ -185,6 +181,17 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('admin/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('admin/js/demo/chart-pie-demo.js')}}"></script>
+
+    <script>
+        function loadFile(event){
+            var render = new FileReader();
+            render.onload = function(){
+                var output = document.getElementById('output');
+                output.src = render.result;
+            }
+            render.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 
 </body>
 
