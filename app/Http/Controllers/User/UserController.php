@@ -4,13 +4,15 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
+use App\Models\Table;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function userHome(){
+        $table = Table::get();
         $menu = Menu::orderBy('id','desc')->get();
-        return view('user.home.home',compact('menu'));
+        return view('user.home.home',compact('menu','table'));
     }
 
     public function userAbout(){
@@ -39,6 +41,7 @@ class UserController extends Controller
     }
 
     public function userBooking(){
-        return view('user.home.booking');
+        $table = Table::get();
+        return view('user.home.booking',compact('table'));
     }
 }

@@ -46,24 +46,35 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating date" id="date3" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
+                            <input type="datetime-local" class="form-control datetimepicker-input"  placeholder="Date & Time" />
                             <label for="datetime">Date & Time</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <select class="form-select" id="select1">
-                              <option value="1">People 1</option>
-                              <option value="2">People 2</option>
-                              <option value="3">People 3</option>
-                            </select>
+                            <input type="number" class="form-control" id="email" placeholder="No Of People">
                             <label for="select1">No Of People</label>
                           </div>
                     </div>
                     <div class="col-12">
                         <div class="form-floating">
-                            <textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
-                            <label for="message">Special Request</label>
+                            <select class="form-select" id="select1">
+                                <option value="">Choose Table</option>
+                                @foreach ($table as $item)
+                                    <option value="{{$item->id}}"
+                                    @if ($item->is_available == true)
+                                        disabled
+                                    @endif   
+                                    class=" @if($item->is_available == true) text-danger @endif" 
+                                    >
+                                        {{$item->table_number}} 
+                                        @if ($item->is_available == true)
+                                            <span>(Reserved)</span>
+                                        @endif
+                                    </option>
+                                @endforeach
+                            </select>
+                            <label for="message">Select Table</label>
                         </div>
                     </div>
                     <div class="col-12">

@@ -2,7 +2,7 @@
 @section('content')
 <div class="">
     <h3 class="text-center mb-3">Menu List</h3>
-    <div class="d-flex justify-content-between mx-5 px-5">
+    <div class="d-flex justify-content-between mx-5 ">
         <div class="my-3">
             <a href="{{route('addMenuPage')}}" class=" btn btn-sm rounded shadow-md bg-primary text-white"><i class="fa fa-plus"></i></a>
         </div>
@@ -31,10 +31,10 @@
             <tbody>
             @foreach ($menu as $item)
                 <tr>
-                    <th scope="row">{{$loop->iteration }}</th>
+                    <th scope="row">{{($menu->currentPage() - 1) * $menu->perPage() + $loop->iteration }}</th>
                     <td><img src="{{asset('menu/'.$item->image)}}" style="width: 60px" alt=""></td>
                     <td>{{$item->name}}</td>
-                    <td>{{$item->price}}</td>
+                    <td>{{$item->price}} AED</td>
                     <td>{{$item->created_at->format('d-m-Y')}}</td>
                     <td class=" d-flex">
                         <a href="{{route('editMenuPage', $item->id)}}" class="btn btn-warning mx-3"><i class="fa fa-eye"></i></a>
@@ -46,6 +46,7 @@
             @endforeach
             </tbody>
         </table>
+        <span class=" d-flex justify-content-end mx-5">{{$menu->links()}}</span>
     </div>
 </div>
 @endsection

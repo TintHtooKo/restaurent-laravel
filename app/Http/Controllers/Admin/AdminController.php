@@ -7,6 +7,7 @@ use App\Models\Contact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
+use App\Models\Table;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -76,8 +77,13 @@ class AdminController extends Controller
                     ->when(request('search'),function($query){
                         $query->whereAny(['name','price'],'like','%'.request('search').'%');
                     })
-                    ->orderBy('id','desc')->get();
+                    ->orderBy('id','desc')->paginate(4);
         return view('admin.menulist.menu',compact('menu'));
+    }
+
+    public function adminTable(){
+        $table = Table::orderBy('id','desc')->paginate(5);
+        return view('admin.tablelist.table',compact('table'));
     }
 
     private function adminValidate($request){

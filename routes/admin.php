@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\TableController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'],function(){
@@ -33,5 +35,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'],function(){
       Route::get('delete/{id} ',[MenuController::class,'deleteMenu'])->name('deleteMenu');
       Route::get('edit/{id}',[MenuController::class,'editMenuPage'])->name('editMenuPage');
       Route::post('edit/{id}',[MenuController::class,'editMenu'])->name('editMenu');
+   });
+
+   Route::group(['prefix'=>'table'],function(){
+      Route::get('',[AdminController::class,'adminTable'])->name('adminTable');
+      Route::post('add',[TableController::class,'addTable'])->name('addTable');
+      Route::get('delete/{id}',[TableController::class,'deleteTable'])->name('deleteTable');
+      Route::get('edit/{id}',[TableController::class,'editTablePage'])->name('editTablePage');
+      Route::post('edit/{id}',[TableController::class,'editTable'])->name('editTable');
+   });
+
+   Route::group(['prefix'=>'profile'],function(){
+      Route::get('',[ProfileController::class,'profilePage'])->name('profilePage');
+      Route::get('changepw',[ProfileController::class,'changePasswordPage'])->name('changePasswordPage');
+      Route::post('changepw',[ProfileController::class,'changePassword'])->name('changePassword');
+      Route::get('edit',[ProfileController::class,'editProfilePage'])->name('editProfilePage');
+      Route::post('edit',[ProfileController::class,'editProfile'])->name('editProfile');
    });
 });

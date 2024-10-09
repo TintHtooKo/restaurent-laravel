@@ -2,7 +2,7 @@
 @section('content')
 <div class="">
     <h3 class="text-center mb-3">User List</h3>
-    <div class="d-flex justify-content-between mx-5 px-5">
+    <div class="d-flex justify-content-between mx-5">
         <div class="my-3">
         </div>
         <div class=" my-3">

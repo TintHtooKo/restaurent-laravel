@@ -2,7 +2,7 @@
 @section('content')
 <div class="">
     <h3 class="text-center mb-3">Admin List</h3>
-    <div class="d-flex justify-content-between mx-5 px-5">
+    <div class="d-flex justify-content-between mx-5">
         <div class="my-3">
             @if (Auth::user()->role == 'superadmin')
             <a href="{{route('addAdmin')}}" class=" btn btn-sm rounded shadow-md bg-primary text-white"><i class="fa fa-plus"></i></a>

@@ -69,7 +69,7 @@ class MenuController extends Controller
             'price' => 'required|numeric',
         ];
 
-        $rule['image'] = $action == 'add' ? 'required|image|mimes:jpeg,png,jpg' : 'image|mimes:jpeg,png,jpg';
+        $rule['image'] = $action == 'add' ? 'required|image|mimes:jpeg,png,jpg,webp' : 'image|mimes:jpeg,png,jpg,webp';
         $request->validate($rule);
     }
 
