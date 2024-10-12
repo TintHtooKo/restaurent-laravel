@@ -144,6 +144,7 @@
 
     <!-- Template Javascript -->
     <script src="{{asset('user/js/main.js')}}"></script>
+    @yield('customjs')
 </body>
 
 </html>

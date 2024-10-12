@@ -25,7 +25,7 @@
                     <thead>
                         <tr>
                             <th scope="col">Table</th>
-                            <th scope="col">Is Available</th>
+                            {{-- <th scope="col">Is Available</th> --}}
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -33,13 +33,13 @@
                         @foreach ($table as $item)
                             <tr>
                                 <td>{{ $item->table_number }}</td>
-                                <td>
+                                {{-- <td>
                                     @if($item->is_available)
                                         <span class="bg-danger text-white px-2">No</span>
                                     @else
                                         <span class="bg-success text-white px-2">Yes</span>
                                     @endif
-                                </td>
+                                </td> --}}
                                 <td class="d-flex">
                                     @if (Auth::user()->role == 'superadmin')
                                         <a href="{{route('editTablePage', $item->id)}}" class="btn btn-warning mx-2"><i class="fa fa-eye"></i></a>

@@ -211,17 +211,23 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating date" id="date3" data-target-input="nearest">
-                            <input type="datetime-local" class="form-control datetimepicker-input"  placeholder="Date & Time" />
+                            <input type="datetime-local" id="datetime" class="form-control datetimepicker-input"  placeholder="Date & Time" />
                             <label for="datetime">Date & Time</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <input type="number" class="form-control" id="email" placeholder="No Of People">
-                            <label for="select1">No Of People</label>
+                            <input type="number" class="form-control" id="email" placeholder="No Of Guest">
+                            <label for="select1">No Of Guest</label>
                           </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input type="number" class="form-control" id="email" placeholder="Phone">
+                            <label for="select1">Phone</label>
+                          </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-floating">
                             <select class="form-select" id="select1">
                                 <option value="">Choose Table</option>
@@ -398,4 +404,17 @@
 </div>
 </div>
 <!-- Testimonial End -->
+@endsection
+
+@section('customjs')
+<script>
+    const today = new Date();
+    const localDateTime = today.getFullYear() + '-' +
+        String(today.getMonth() + 1).padStart(2, '0') + '-' +
+        String(today.getDate()).padStart(2, '0') + 'T' +
+        String(today.getHours()).padStart(2, '0') + ':' +
+        String(today.getMinutes()).padStart(2, '0');
+    document.getElementById('datetime').min = localDateTime;
+</script>
+
 @endsection

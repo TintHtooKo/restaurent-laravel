@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\TableController;
@@ -51,5 +52,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'],function(){
       Route::post('changepw',[ProfileController::class,'changePassword'])->name('changePassword');
       Route::get('edit',[ProfileController::class,'editProfilePage'])->name('editProfilePage');
       Route::post('edit',[ProfileController::class,'editProfile'])->name('editProfile');
+   });
+
+   Route::group(['prefix'=>'booking'],function(){
+      Route::get('',[BookingController::class,'bookingList'])->name('bookingList');
+      Route::get('edit/{id}',[BookingController::class,'bookingEditPage'])->name('bookingEditPage');
+      Route::post('edit/{id}',[BookingController::class,'bookingEdit'])->name('bookingEdit');
    });
 });

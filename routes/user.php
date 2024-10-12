@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -11,8 +12,10 @@ Route::group(['prefix' => 'user', 'middlware' => 'user'],function(){
     Route::get('menu',[UserController::class,'userMenu'])->name('userMenu');
     Route::get('team',[UserController::class,'userTeam'])->name('userTeam');
     Route::get('testimonial',[UserController::class,'userTestimonial'])->name('userTestimonial');
-    Route::get('contact',[UserController::class,'userContact'])->name('userContact');
-    Route::get('booking',[UserController::class,'userBooking'])->name('userBooking');
 
+    Route::get('contact',[UserController::class,'userContact'])->name('userContact');   
     Route::post('contact',[ContactController::class,'contact'])->name('contact');
+
+    Route::get('booking',[UserController::class,'userBooking'])->name('userBooking');
+    Route::post('booking',[BookingController::class,'booking'])->name('booking');
 });

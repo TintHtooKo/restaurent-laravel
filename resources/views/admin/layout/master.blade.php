@@ -82,16 +82,16 @@
             <hr class="sidebar-divider d-none d-md-block">
 
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('adminMenu')}}">
+                <a class="nav-link" href="{{route('bookingList')}}">
                     <i class="fa-solid fa-utensils"></i>
-                    <span>Booking List</span></a>
+                    <span>Booking List <span class=" bg-danger px-2 py-1 rounded mx-2">{{$unreadBooking}}</span></span></a>
             </li>
             <hr class="sidebar-divider d-none d-md-block">
 
             <li class="nav-item active">
                 <a class="nav-link" href="{{route('adContact')}}">
                     <i class="fa-solid fa-message"></i>
-                    <span>Contact Message</span></a>
+                    <span>Contact Message </span></a>
             </li>
             <hr class="sidebar-divider d-none d-md-block">
 

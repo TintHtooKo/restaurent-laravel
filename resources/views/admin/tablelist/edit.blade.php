@@ -17,7 +17,7 @@
                         @enderror
                     </div>
     
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label class="form-label">Is Available</label>
                         <select name="available" id="" class="form-control  @error('available') is-invalid @enderror">
                             <option value="0" {{$table->is_available ? 'selected' : ''}}>Yes</option>
@@ -26,7 +26,7 @@
                         @error('available')
                             <span class="invalid-feedback">{{$message}}</span>
                         @enderror
-                    </div>
+                    </div> --}}
     
                     <div class="mb-3">
                         <input type="submit" value="Edit" class="btn btn-primary w-100 rounded shadow-sm">
