@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ContactController extends Controller
-{
+{ 
     public function contact(Request $request){
         $this->contactValidate($request);
         $data = $this->contactData($request);
@@ -23,8 +23,17 @@ class ContactController extends Controller
     }
 
     public function contactDetail($id){
-        $contact = Contact::find($id);
+        $contact = Contact::select('id','name','email','subject','message','created_at','make_as_read')
+                            ->find($id);
         return view('admin.dashboard.contactDetail',compact('contact'));
+    }
+
+    public function contactUpdate(Request $request,$id){
+        $this->contactValidate($request);
+        $data = $this->contactData($request);
+        Contact::find($id)->update($data);
+        Alert::success('Success', 'Message updated successfully');
+        return to_route('adContact');
     }
 
     private function contactValidate($request){
@@ -41,7 +50,8 @@ class ContactController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'subject' => $request->subject,
-            'message' => $request->message
+            'message' => $request->message,
+            'make_as_read' => $request->check ?? false
         ];
     }
 }

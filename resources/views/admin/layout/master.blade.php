@@ -91,7 +91,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{route('adContact')}}">
                     <i class="fa-solid fa-message"></i>
-                    <span>Contact Message </span></a>
+                    <span>Contact Message <span class=" bg-danger px-2 py-1 rounded mx-2">{{$unreadContact}}</span></span></a>
             </li>
             <hr class="sidebar-divider d-none d-md-block">
 

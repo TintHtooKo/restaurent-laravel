@@ -16,8 +16,8 @@
                 </thead>
                 <tbody>
                   @foreach ($contact as $item)
-                    <tr>
-                        <th scope="row">{{$loop->iteration }}</th>
+                    <tr style="@if($item->make_as_read == true) background-color: #E6E6E9; @endif">
+                        <th scope="row"><span class="@if($item->make_as_read == false)bg-danger text-white px-2 py-1 rounded @endif">{{$loop->iteration }}</span></th>
                         <td>{{$item->name}}</td>
                         <td>{{$item->email}}</td>
                         <td>{{$item->subject}}</td>

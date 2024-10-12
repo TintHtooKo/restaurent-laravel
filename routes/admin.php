@@ -15,6 +15,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'],function(){
       Route::get('',[AdminController::class,'adContact'])->name('adContact');
       Route::get('detail/{id}',[ContactController::class,'contactDetail'])->name('contactDetail');
       Route::get('delete/{id}',[ContactController::class,'contactDelete'])->name('contactDelete');
+      Route::post('edit/{id}',[ContactController::class,'contactUpdate'])->name('contactUpdate');
    });
 
    Route::group(['prefix'=>'userlist'],function(){
@@ -58,5 +59,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'],function(){
       Route::get('',[BookingController::class,'bookingList'])->name('bookingList');
       Route::get('edit/{id}',[BookingController::class,'bookingEditPage'])->name('bookingEditPage');
       Route::post('edit/{id}',[BookingController::class,'bookingEdit'])->name('bookingEdit');
+      Route::get('delete/{id}',[BookingController::class,'bookingDelete'])->name('bookingDelete');
    });
 });

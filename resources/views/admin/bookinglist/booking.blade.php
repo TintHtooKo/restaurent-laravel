@@ -7,7 +7,7 @@
         <div class="my-3">
         </div>
         <div class=" my-3">
-            <form action="" method="get">
+            <form action="{{route('bookingList')}}" method="get">
                 @csrf
                 <div class="input-group">
                     <input type="text" name="search" value="{{request('search')}}" class=" form-control" placeholder="Search ...">
@@ -41,12 +41,12 @@
                     <td>{{$item->phone}}</td>
                     <td>{{$item->table_name}}</td>
                     <td>{{$item->no_of_guest}}</td>
-                    <td>{{$item->datetime}}</td>                   
+                    <td>{{\Carbon\Carbon::parse($item->datetime)->format('M d,Y H:i')}}</td>                   
                     <td>{{$item->created_at->format('d-m-Y')}}</td>
                     <td class=" d-flex">
                         @if (Auth::user()->role == 'superadmin')
                         <a href="{{route('bookingEditPage',$item->id)}}" class="btn btn-warning mx-2"><i class="fa fa-eye"></i></a>
-                        <a href="{{route('adminDelete', $item->id)}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                        <a href="{{route('bookingDelete', $item->id)}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                         @endif
                     </td>
                 </tr>

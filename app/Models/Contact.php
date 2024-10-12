@@ -13,6 +13,7 @@ class Contact extends Model
         'email',
         'subject',
         'message',
+        'make_as_read'
     ];
 }
  

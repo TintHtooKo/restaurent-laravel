@@ -26,8 +26,14 @@
                         </div>
                         <div class="mb-3">
                             <label for="table" class="form-label">Table Number</label>
-                            <input readonly type="text" id="table" name="table" value="{{$booking->table_name}}" class="form-control" placeholder="Enter Email">
+                            <input readonly type="text" id="table"  value="{{$booking->table_name}}" class="form-control" placeholder="Enter Email">
+                            <select name="table" class="form-select d-none" id="">
+                                @foreach ($tables as $item)
+                                    <option value="{{$item->id}}" @if($item->id == $booking->table_id) selected @endif>{{$item->table_number}}</option>
+                                @endforeach
+                            </select>
                         </div>
+
                         <div class="mb-3">
                             <label for="guest" class="form-label">No of Guest</label>
                             <input readonly type="text" id="guest" name="guest" value="{{$booking->no_of_guest}}" class="form-control" placeholder="Enter Email">
@@ -36,10 +42,14 @@
                             <label for="date" class="form-label">Date</label>
                             <input readonly type="text" id="date" name="datetime" value="{{$booking->datetime}}" class="form-control" placeholder="Enter Email">
                         </div>
-                        <div class="form-check mb-3">
-                            <input type="checkbox" name="check" class="form-check-input" id="exampleCheck1" @if($booking->make_as_read == true) checked @endif>
-                            <label class="form-check-label" for="exampleCheck1">Make As Read</label>
-                        </div>                        
+                        <div class="mb-3">
+                            <label class="form-label">Make As Read</label>
+                            <select name="check" id="" class="form-control ">
+                                <option value="0" {{$booking->make_as_read? 'selected' : ''}}>Still Doesn't Read</option>
+                                <option value="1" {{$booking->make_as_read? 'selected' : ''}}>ALready Read</option>
+                            </select>
+                        </div>
+                                                
                         <div class="mb-3">
                             <input type="submit" value="Create" class="btn btn-primary w-100 rounded shadow-sm">
                         </div>

@@ -15,5 +15,6 @@ class Booking extends Model
         'datetime',
         'no_of_guest',
         'table_id',
+        'make_as_read'
     ];
 }

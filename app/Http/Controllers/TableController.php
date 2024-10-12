@@ -45,7 +45,6 @@ class TableController extends Controller
     private function tableData($request){
         return [
             'table_number' => $request->name,
-            // 'is_available' => $request->available ?? false,
         ];
     }
 }

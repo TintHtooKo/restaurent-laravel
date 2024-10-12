@@ -15,6 +15,10 @@ class BookingController extends Controller
     public function bookingList(){
         $booking = Booking::select('tables.table_number as table_name','bookings.make_as_read','bookings.id','bookings.name','bookings.email','bookings.phone','bookings.datetime','bookings.no_of_guest','bookings.created_at')
                             ->leftJoin('tables','bookings.table_id','tables.id')
+                            ->when(request('search'),function($query){
+                                $search = request('search');
+                            $query->whereRaw("DATE_FORMAT(bookings.datetime, '%b %d,%Y') like ?", ['%' . $search . '%']);
+                            })
                             ->orderBy('id','desc')
                             ->get();
         return view('admin.bookinglist.booking',compact('booking'));
@@ -44,14 +48,25 @@ class BookingController extends Controller
     }
 
     public function bookingEditPage($id){
-        $booking = Booking::select('tables.table_number as table_name','bookings.id','bookings.name','bookings.email','bookings.phone','bookings.datetime','bookings.no_of_guest','bookings.make_as_read','bookings.created_at')
+        $booking = Booking::select('tables.table_number as table_name','bookings.table_id','bookings.id','bookings.name','bookings.email','bookings.phone','bookings.datetime','bookings.no_of_guest','bookings.make_as_read','bookings.created_at')
                             ->leftJoin('tables','bookings.table_id','tables.id')
                             ->find($id);
-        return view('admin.bookinglist.editBooking',compact('booking'));
+        $tables = Table::select('id','table_number')->get();
+        return view('admin.bookinglist.editBooking',compact('booking','tables'));
     }
 
     public function bookingEdit(Request $request, $id){
-        dd($request->all());
+        $this->bookingValidate($request);
+        $data = $this->bookingData($request);
+        Booking::find($id)->update($data);
+        Alert::success('Success', 'Booking updated successfully');
+        return to_route('bookingList');
+    }
+
+    public function bookingDelete($id){
+        Booking::find($id)->delete();
+        Alert::success('Success', 'Booking deleted successfully');
+        return back();
     }
 
     private function bookingValidate($request){
@@ -73,6 +88,7 @@ class BookingController extends Controller
             'datetime' => $request->datetime,
             'no_of_guest' => $request->guest,
             'table_id' => $request->table,
+            'make_as_read' => $request->check ?? false
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Booking;
+use App\Models\Contact;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -29,6 +30,11 @@ class AppServiceProvider extends ServiceProvider
         View::composer('admin.layout.master',function($view){
             $unreadBooking = Booking::where('make_as_read',false)->count();
             $view->with('unreadBooking',$unreadBooking); 
+        });
+
+        View::composer('admin.layout.master',function($view){
+            $unreadContact = Contact::where('make_as_read',false)->count();
+            $view->with('unreadContact',$unreadContact);
         });
     }
 }
